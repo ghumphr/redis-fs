@@ -4,15 +4,16 @@ Distributed in memory filesystem
 ## What is this?
 RedisFS is a distributed user-space filesystem stored in Redis
 This allows for your content to be sorted remotely, auto backed up and shared among others (if you wish) while giving the illusion and the convenience of working locally.
+Note: The original repository doesn't seem to work. I forked the updates made by [Programie](https://github.com/Programie/redis-fs) as a starting point.
 
 ## Prerequisite
 * [Fuse](https://github.com/libfuse/libfuse)
 * [Python-Fuse](https://github.com/libfuse/python-fuse)
 
 ## Usage
-Mount: `sudo python main.py <path_to_mount_point>`
+Mount: `python main.py <path_to_mount_point>`
 
-Example: `sudo python main.py ~/RedisFS`
+Example: `python main.py ~/RedisFS`
 
 You should be able to `cd ~/RedisFS`
 
@@ -31,4 +32,4 @@ map auto_home on /System/Volumes/Data/home (autofs, automounted, nobrowse)
 Python@osxfuse0 on /Users/roilipman/Dev/test_fs (osxfuse, synchronous)
 ```
 
-Look for `fuse`  and unmount `sudo umount Python@osxfuse0`
+Look for `fuse`  and unmount `umount Python@osxfuse0`
