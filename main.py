@@ -3,7 +3,9 @@ import fuse
 from fuse import Fuse
 import redis
 import logging
+import argparse
 from redisfs import RFS, RFolder, RFile
+import sys
 
 if not hasattr(fuse, '__version__'):
     raise RuntimeError("your fuse-py doesn't know of fuse.__version__, probably it's too old.")
@@ -158,12 +160,25 @@ class RedisFS(Fuse):
         log.debug("chmod, path: {}, mode: {}".format(path, mode))
         # TODO: implement.
 
+def parse_args(av):
+    parser = argparse.ArgumentParser(description="Parse host and port arguments.")
+    parser.add_argument("command", type=str, help="The command.")
+    parser.add_argument("path", type=str, help="The path.")
+    parser.add_argument("--host", type=str, default="localhost", help="The host address.")
+    parser.add_argument("--port", type=int, default=6379, help="The port number.")
+
+    args = parser.parse_args(av)
+    return args
+
 def main():
     log.debug("Starting RedisFS")
     logging.basicConfig(filename="log", filemode="w")
     logging.getLogger().setLevel(logging.DEBUG)
 
     usage="""RedisFS""" + Fuse.fusage
+    
+    args = parse_args(sys.argv)
+    print(args)
 
     server = RedisFS(version="%prog " + fuse.__version__, usage=usage, dash_s_do='setsingle')
     server.parse(errex=1)
