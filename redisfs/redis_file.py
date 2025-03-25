@@ -29,10 +29,15 @@ class RFile(object):
         """Read `length` bytes at `offset` from file"""
         return self.conn.getrange(self.path, offset, size)
 
-    def Write(self, buff):
-        """Writes buff to file"""
-        self.conn.set(self.path, buff)
-        return self.conn.strlen(self.path)
+#    def Write(self, buff):
+#        """Writes buff to file"""
+#        self.conn.set(self.path, buff)
+#        return self.conn.strlen(self.path)
+
+    def Write(self, buff, offset):
+        """Writes buff to file at the given offset"""
+        self.conn.setrange(self.path, offset, buff)  # Use SETRANGE with offset
+        return len(buff) # Return the length of the buffer written
 
     def Delete(self):
         """Deletes file and all of its content."""

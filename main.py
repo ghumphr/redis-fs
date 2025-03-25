@@ -131,7 +131,7 @@ class RedisFS(Fuse):
             logging.debug("File does not exists!")
             return None
 
-        file.Write(buf)
+        file.Write(buf, offset)
         return len(buf)
 
         # array = self.buffers.get(path, bytearray())
