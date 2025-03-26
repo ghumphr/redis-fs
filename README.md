@@ -2,8 +2,9 @@
 Distributed in memory filesystem
 
 ## What is this?
-RedisFS is a distributed user-space filesystem stored in Redis
+RedisFS is a distributed user-space filesystem stored in Redis.
 This allows for your content to be sorted remotely, auto backed up and shared among others (if you wish) while giving the illusion and the convenience of working locally.
+Ideally, performance would be extremely good.
 Note: The original repository doesn't seem to work. I forked the updates made by [Programie](https://github.com/Programie/redis-fs) as a starting point.
 
 ## Prerequisite
